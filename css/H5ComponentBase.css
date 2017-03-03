@@ -1,0 +1,6 @@
+/*  H5ComponentBase对象（基本的图文组件对象） */
+.h5_component {
+	background-size: 100%;
+	background-repeat: no-repeat;
+	position: absolute;
+}
