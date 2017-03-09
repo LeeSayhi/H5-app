@@ -9,6 +9,9 @@
 	<script src="../js/lib/jquery-3.1.1.min.js"></script>
 	<script src="../js/H5ComponentBase.js"></script>
 
+	<link rel="stylesheet" href="../css/H5ComponentPoint.css">
+	<script src="../js/H5ComponentPoint.js"></script>
+
 	<style type="text/css">
 		body {
 			margin: 0;
@@ -31,27 +34,31 @@
 </head>
 <body>	
 
-	<!-- 用于开发测试 H5ComponentBase对象（基本的图文组件）-->
+	<!-- 用于开发测试 H5ComponentPoint对象（散点图组件）-->
 	<div class="iphone">
 		
 	</div>
 
 	<script>
 		var config = {
-			type: 'base',
-			width: 514,
-			height: 306,
-			bg: './p1_people.png',
+			type: 'point',
+			width: 300,
+			height: 300,
+			data: [
+				['A项', .4, 'green'], 
+				['B项', .2, 'yellow', 0, '-60%'],
+				['C项', .1, 'red', 0, '120%']
+			],
 			css: {
 				bottom: 0,
-				opacity: 0,
+				opacity: 1,
 			},
-			animateIn: { bottom: 50, opacity:1},
+			animateIn: { bottom: '40%', opacity:1},
 			animateOut: { bottom: 0, opacity:0},
 			center: true,
 		}
 
-		var h5 = new H5ComponentBase('myName', config);
+		var h5 = new H5ComponentPoint('myName', config);
 		$('.iphone').append(h5);
 
 		var leave = true;

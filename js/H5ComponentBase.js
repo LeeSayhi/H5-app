@@ -22,7 +22,7 @@ var H5ComponentBase = function (name,config) {
 		})
 	}
 
-	component.on('onLoad', function() {
+	component.on('afterLoad', function() {
 		component.addClass(cls+ '_load').removeClass(cls+'_leave');
 		config.animateIn && component.animate(config.animateIn);
 		return false;
