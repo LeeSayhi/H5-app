@@ -1,4 +1,4 @@
-/*  H5ComponentPoint对象（散点图表组件对象） */
+/*  H5ComponentBar对象（水平散点图表组件对象） */
 
 var H5ComponentBar = function (name, config) {
 	var component = new H5ComponentBase(name, config);

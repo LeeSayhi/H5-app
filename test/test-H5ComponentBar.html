@@ -34,7 +34,7 @@
 </head>
 <body>	
 
-	<!-- 用于开发测试 H5ComponentPoint对象（散点图组件）-->
+	<!-- 用于开发测试 H5ComponentBar对象（水平散点图组件）-->
 	<div class="iphone">
 		
 	</div>
@@ -42,7 +42,7 @@
 	<script>
 		var config = {
 			type: 'bar',
-			width: 500,
+			width: 530,
 			height: 600,
 			data: [
 				['HTML/CSS', .4, 'red'],
@@ -53,10 +53,17 @@
 				['Bootstrap', .1],
 			],
 			css: {
-				top: 50,
+				top: 100,
+				opacity: 0,
 			},
-			animateIn: { bottom: '40%', opacity:1},
-			animateOut: { bottom: 0, opacity:1},
+			animateIn: {
+				opacity:1, 
+				top: 200
+			},
+			animateOut: {
+				opacity:0, 
+				top:100
+			},
 			center: true,
 		}
 

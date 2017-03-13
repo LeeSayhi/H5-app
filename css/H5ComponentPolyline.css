@@ -1,0 +1,8 @@
+/*H5ComponentPolyline对象(折线图组件)*/
+.h5_component_ployline canvas {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
