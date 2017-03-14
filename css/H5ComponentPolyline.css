@@ -6,3 +6,20 @@
 	width: 100%;
 	height: 100%;
 }
+.h5_component_ployline .text {
+	position: absolute;
+	font-size: 12px;
+	bottom: -20px;
+	height: 20px;
+	text-align: center;
+	transform: scale(.8);
+	-webkit-transition: all 1s 1.5s;
+	-webkit-opacity:0;
+}
+.h5_component_ployline_load .text {
+	-webkit-opacity: 1;
+
+}
+.h5_component_ployline_leave .text{
+	-webkit-opacity: 0;
+}

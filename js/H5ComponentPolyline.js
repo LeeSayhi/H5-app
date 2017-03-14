@@ -33,6 +33,17 @@ var H5ComponentPolyline = function (name, config) {
 		var x = (w/step)*i;
 		ctx.moveTo(x, 0);
 		ctx.lineTo(x, h);
+
+		if (config.data[i]) {
+			var text = $('<div class="text">');
+			text.text(config.data[i][0]);
+
+			text.css({
+				'width': (w/step)/2,
+				'left': x/2+w/step/4,
+			})
+		}
+		component.append(text);
 	}
 
 	ctx.stroke();
@@ -45,55 +56,81 @@ var H5ComponentPolyline = function (name, config) {
 	cns.height = ctx.height = h;
 	component.append(cns);
 
-	// 绘制折线
-	ctx.beginPath();
-	ctx.lineWidth = 3;
-	ctx.strokeStyle = '#ff8878';
+	var draw = function(per) {
+		ctx.clearRect(0,0,w,h);
 
-	var x = 0;
-	var y = 0;
+		// 绘制折线
+		ctx.beginPath();
+		ctx.lineWidth = 3;
+		ctx.strokeStyle = '#ff8878';
 
-	var row_w = (w/(config.data.length+1));
+		var x = 0;
+		var y = 0;
 
-	// 画点
-	for(var i = 0; i < config.data.length; i++) {
-		var item = config.data[i];
-		x = row_w*i + row_w;
-		y = h*(1-item[1]);
+		var row_w = (w/(config.data.length+1));
 
-		ctx.moveTo(x,y);
-		ctx.arc(x,y,5,0,2*Math.PI);
+		// 画点
+		for(var i = 0; i < config.data.length; i++) {
+			var item = config.data[i];
+			x = row_w*i + row_w;
+			y = (h-item[1]*h*per);
+
+			ctx.moveTo(x,y);
+			ctx.arc(x,y,5,0,2*Math.PI);
+		}
+
+		// 连线
+			// 移动画笔到第一个数据的位置
+			ctx.moveTo(row_w, h-config.data[0][1]*h*per);	
+
+		for (var i = 0; i < config.data.length; i++) {
+		 	var item = config.data[i];
+		 	x = row_w*i + row_w;
+			y = h-item[1]*h*per;
+		
+		 	ctx.lineTo(x,y)
+	    }
+
+		ctx.stroke();
+
+		// 绘制阴影
+		ctx.lineTo(x,h);
+		ctx.lineTo(row_w, h);
+		ctx.fillStyle = 'rgba(255, 136, 120, 0.2)';
+		ctx.fill();
+
+	    // 写数据
+	    for (var i = 0; i < config.data.length; i++) {
+	    	var item = config.data[i];
+	    	x = row_w*i + row_w;
+	    	y = h-item[1]*h*per;
+
+	    	ctx.fillStyle = item[2] ? item[2] : '#595959';
+	    	ctx.fillText((item[1]*100>>0)+'%', x-10, y-10);
+	    }
 	}
 
-	// 连线
-		// 移动画笔到第一个数据的位置
-		ctx.moveTo(row_w, h*(1-config.data[0][1]));	
+	// 折线图生长动画
+	component.on('afterLoad', function() {
+		var s = 0;
 
-	for (var i = 0; i < config.data.length; i++) {
-	 	var item = config.data[i];
-	 	x = row_w*i + row_w;
-		y = h*(1-item[1]);
-	
-	 	ctx.lineTo(x,y)
-    }
+		for( i=0; i<100; i++){
+			setTimeout(function() {
+				s+=.01;
+				draw(s);
+			}, i*10+500)
+		}
+	})
+	component.on('onLeave', function() {
+		var s=1;
 
-	ctx.stroke();
-
-	// 绘制阴影
-	ctx.lineTo(x,h);
-	ctx.lineTo(row_w, h);
-	ctx.fillStyle = 'rgba(255, 136, 120, 0.2)';
-	ctx.fill();
-
-    // 写数据
-    for (var i = 0; i < config.data.length; i++) {
-    	var item = config.data[i];
-    	x = row_w*i + row_w;
-    	y = h*(1-item[1]);
-
-    	ctx.fillStyle = item[2] ? item[2] : '#595959';
-    	ctx.fillText((item[1]*100>>0)+'%', x-10, y-10);
-    }
+		for ( i=0; i<100; i++){
+			setTimeout(function() {
+				s-=.01
+				draw(s);
+			}, i*10)
+		}
+	})	
 
 	return component;
 

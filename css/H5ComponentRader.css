@@ -1,0 +1,16 @@
+/*H5ComponentRader对象(折线图组件)*/
+.h5_component_rader{
+
+}
+.h5_component_rader canvas {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.h5_component_rader .text {
+	position: absolute;
+	font-size: 12px;
+
+}

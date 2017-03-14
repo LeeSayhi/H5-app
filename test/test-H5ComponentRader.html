@@ -9,8 +9,8 @@
 	<script src="../js/lib/jquery-3.1.1.min.js"></script>
 	<script src="../js/H5ComponentBase.js"></script>
 
-	<link rel="stylesheet" href="../css/H5ComponentPolyline.css">
-	<script src="../js/H5ComponentPolyline.js"></script>
+	<link rel="stylesheet" href="../css/H5ComponentRader.css">
+	<script src="../js/H5ComponentRader.js"></script>
 
 	<style type="text/css">
 		body {
@@ -34,22 +34,22 @@
 </head>
 <body>	
 
-	<!-- 用于开发测试 H5ComponentPolyline对象（折线图组件）-->
+	<!-- 用于开发测试 h5_component_rader对象（雷达图组件）-->
 	<div class="iphone">
 		
 	</div>
 
 	<script>
 		var config = {
-			type: 'ployline',
-			width: 530,
-			height: 600,
+			type: 'rader',
+			width: 400,
+			height: 400,
 			data: [
-				['CSS', .4, 'red'],
-				['HTML5', .5],
-				['CSS3', .3],
-				['JS', .2],
-				['jQuery', .4],
+				['CSS', .9, 'red'],
+				['HTML5', .8],
+				['CSS3', .7],
+				['JS', .8],
+				['jQuery', .5],
 			],
 			css: {
 				top: 100,
@@ -60,13 +60,13 @@
 				top: 200
 			},
 			animateOut: {
-				opacity:1, 
-				top:200
+				opacity:0, 
+				top:100
 			},
 			center: true,
 		}
 
-		var h5 = new H5ComponentPolyline('componentPolyline', config);
+		var h5 = new H5ComponentRader('componentRader', config);
 		$('.iphone').append(h5);
 
 		var leave = true;
