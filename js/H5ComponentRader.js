@@ -88,7 +88,7 @@ var H5ComponentRader = function (name, config) {
 		if (per >= 1) {
 			component.find('.text').css('opacity', 1);
 		}
-		if (per < .1) {
+		if (per <= 1) {
 			component.find('.text').css('opacity', 0);
 		}
 			
