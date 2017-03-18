@@ -4,7 +4,6 @@ var H5ComponentBase = function (name,config) {
 	this.config = config || {};
 	
 	var id = ('h5_c_' + Math.random()).replace('.', '_');
-	// 把当前的组件类型(base)添加到样式中进行标记
 	var cls = ' h5_component_' + config.type;
 	var component = $('<div class="h5_component h5_component_name_'+name+' ' +cls+' " id="'+id+'" >');
 
@@ -22,14 +21,24 @@ var H5ComponentBase = function (name,config) {
 		})
 	}
 
+	//  一些自定义参数....
+
+	if (typeof config.onclick === 'function') {
+		component.on('click', config.onclick)
+	}
+
 	component.on('afterLoad', function() {
 		component.addClass(cls+ '_load').removeClass(cls+'_leave');
-		config.animateIn && component.animate(config.animateIn);
+		setTimeout(function() {
+			config.animateIn && component.animate(config.animateIn);
+		}, config.delay || 0)
 		return false;
 	});
 	component.on('onLeave', function() {
 		component.addClass(cls+ '_leave').removeClass(cls+'_load');
-		config.animateOut && component.animate(config.animateOut);
+		setTimeout(function() {
+			config.animateOut && component.animate(config.animateOut);
+		}, config.delay || 0)	
 		return false;
 	});
 

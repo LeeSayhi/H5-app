@@ -1,6 +1,6 @@
 /*  H5ComponentPoint对象（散点图表组件对象） */
 .h5_component_point {
-	
+	color: #fff;
 }
 .h5_component_point .point {
 	display: block;

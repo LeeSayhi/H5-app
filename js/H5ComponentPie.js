@@ -105,10 +105,14 @@ var H5ComponentPie = function (name, config) {
 			 component.find('.text').css('opacity', 0);
 		}else {
 			ctx.arc(r, r, r, sAngel, sAngel+2*Math.PI*per, true);
-			component.find('.text').css('opacity', 1);
-		}
+		}	
 		ctx.fill();
-		ctx.stroke();		
+		ctx.stroke();	
+
+		if (per >= 1) {
+			component.find('.text').css('opacity', 1);
+			ctx.clearRect(0, 0, w, h);
+		}	
 	}
 	draw(0);
 

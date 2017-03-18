@@ -21,6 +21,11 @@ var H5 = function () {
 		}
 		this.el.append(page);
 		this.page.push(page)
+
+		if (typeof this.whenAddPage === 'function') {
+			this.whenAddPage();
+		}
+
 		return this;	
 	}
 
@@ -37,6 +42,28 @@ var H5 = function () {
 			case 'base':
 				component = new H5ComponentBase(name, config);
 				break;
+			case 'polyline':
+				component = new H5ComponentPolyline(name, config);
+				break;
+			case 'pie' :
+				component = new H5ComponentPie(name, config);
+				break;
+			case 'bar' :
+				component = new H5ComponentBar(name, config);
+				break;
+			case 'bar_v' :
+				component = new H5ComponentBar_v(name, config);
+				break;
+			case 'rader' :
+				component = new H5ComponentRader(name, config);
+				break;
+			case 'ring' :
+				component = new H5ComponentRing(name, config);
+				break;
+			case 'point' :
+				component = new H5ComponentPoint(name, config);
+				break;
+
 				default:
 		}
 		page.append(component);
@@ -44,8 +71,7 @@ var H5 = function () {
 	}
 
 	/* H5对象初始化呈现 */
-	this.loader = function() {
-		this.el.show();
+	this.loader = function(whichPage) {
 		this.el.fullpage({
 			onLeave: function(index, nextIndex, direction) {
 				$(this).find('.h5_component').trigger('onLeave');
@@ -55,6 +81,11 @@ var H5 = function () {
 			},
 		});	
 		this.page[0].find('.h5_component').trigger('afterLoad');
+
+		this.el.show();
+
+		$.fn.fullpage.moveTo(whichPage)
+		
 	}
 
 	return this;
