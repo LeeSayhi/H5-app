@@ -21,8 +21,9 @@ var H5ComponentBar = function (name, config) {
 		name.text(item[0]);
 		per.text(width);
 
-		component.append(line);
 		line.append(name).append(rate).append(per);
+		
+		component.append(line);
 	})
 	
 	return component;

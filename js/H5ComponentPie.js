@@ -110,6 +110,7 @@ var H5ComponentPie = function (name, config) {
 		ctx.stroke();	
 
 		if (per >= 1) {
+			H5ComponentPie.reSort(component.find('.text'));
 			component.find('.text').css('opacity', 1);
 			ctx.clearRect(0, 0, w, h);
 		}	
@@ -136,7 +137,21 @@ var H5ComponentPie = function (name, config) {
 		}
 	});
 
-
 	return component;
+}
+
+// 重拍项目文本元素
+H5ComponentPie.reSort = function(list) {
+
+	// 1. 检测相交
+	var compare = function(domA, domB) {
+		var offset = domA.offset();
+
+	}
+
+	 // 2. 错开重拍
+	 var reset = function(domA, domB) {
+
+	 }
 }
 
