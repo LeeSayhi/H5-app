@@ -10,14 +10,14 @@ var H5_loading = function(images, firstPage) {
 		// 把当前对象存储在全局对象中，用来进行某个图片加载完成之后的回调
 		window[id] = this;  
 
-		for (var i = 0; i < images.length; i++) {
+		for (i in images) {
 			var item = images[i];
 			var img = new Image;
 			// img.afterLoad = function() {
 			// 	window[id].loader();
 			// }
-			window[id].loader(); 
-			img.src = item;  // 把图片载入到缓存里
+			window[id].loader();
+			img.src = item;  
 		}
 
 		$('#rate').text('0%');
